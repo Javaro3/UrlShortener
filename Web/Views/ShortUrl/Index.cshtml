@@ -1,0 +1,66 @@
+﻿﻿@using Domains.Domains
+@model IEnumerable<ShortUrl>
+@{
+    ViewData["Title"] = "Short Urls List";
+}
+
+<div class="text-center">
+    @if(Model.Count() == 0){
+        <p class="display-3 text-primary font-weight-bold">Database is empty</p>
+    }
+    else{
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                   <th>
+                        <b>Long Url</b>
+                    </th>
+                    <th>
+                        <b>Short Url</b>
+                    </th>
+                    <th>
+                        <b>Creating Date</b>
+                    </th>
+                    <th>
+                        <b>Transitions Count</b>
+                    </th>
+                    <th></th>
+            </thead>
+            <tbody>
+                @foreach (var shortUrl in Model) {
+                    <tr>
+                        <td>
+                            <a href="@shortUrl.Url">
+                                @{
+                                    string compresedLongUrl = shortUrl.Url.Length > 50 ? shortUrl.Url.Substring(0, 50) + "..." : shortUrl.Url;
+                                }
+
+                                @Html.DisplayFor(modelItem => compresedLongUrl)
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/@shortUrl.Hash">
+                                @{
+                                    string shortUrlWithHost = $"{ViewContext.HttpContext.Request.Scheme}://{ViewContext.HttpContext.Request.Host}/{shortUrl.Hash}";
+                                }
+                                @Html.DisplayFor(modelItem => shortUrlWithHost)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => shortUrl.CreatingDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => shortUrl.TransitionsCount)
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@shortUrl.Id">Edit</a>
+                                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@shortUrl.Id">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }    
+</div>

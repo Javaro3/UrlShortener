@@ -1,0 +1,9 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Short Urls Error";
+    string message = (string)Model;
+}
+
+<div class="text-center">
+    <p class="display-2 text-danger font-weight-bold">@message</p>
+</div>

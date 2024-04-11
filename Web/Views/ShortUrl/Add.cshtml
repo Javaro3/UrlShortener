@@ -1,0 +1,25 @@
+﻿﻿@using Domains.ViewModels﻿
+@model AddShortUrlViewModel
+@{
+    ViewData["Title"] = "Add Short Url";
+}
+
+<h1 class="display-4 text-primary text-center">Short Url</h1>
+<div class="row d-flex justify-content-center mb-2">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Url" class="form-control" autocomplete="@Html.DisplayNameFor(model => model.Url)" aria-required="true" placeholder="@Html.DisplayNameFor(model => model.Url)" />
+                <label asp-for="Url">@Html.DisplayNameFor(model => model.Url)</label>
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Short" class="w-100 btn btn-lg btn-primary mt-2" />
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
