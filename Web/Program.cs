@@ -1,3 +1,5 @@
+using Domains.Domains;
+using Domains.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Repository.Repositories;
@@ -19,7 +21,7 @@ namespace Web {
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<UrlShortnerContext>(option => option.UseMySql(connectionString, databaseVersion));
-            builder.Services.AddScoped<ShortUrlRepository>();
+            builder.Services.AddScoped<IRepository<ShortUrl>, ShortUrlRepository>();
             builder.Services.AddScoped<ShortUrlDataService>();
             builder.Services.AddSession();
 

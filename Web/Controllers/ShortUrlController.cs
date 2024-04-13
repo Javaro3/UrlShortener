@@ -20,7 +20,7 @@ namespace Web.Controllers {
         public async Task<IActionResult> RedirectToUrl(string hash) {
             try {
                 var shortUrl = await _dataService.GetByHashAsync(hash);
-                await _dataService.IncrementTransitionsCount(shortUrl);
+                await _dataService.IncrementTransitionsCountAsync(shortUrl);
                 string url = Uri.EscapeUriString(shortUrl.Url);
                 return Redirect(url);
             }

@@ -5,9 +5,9 @@ using System.Data.SqlTypes;
 
 namespace Services.DataServices {
     public class ShortUrlDataService {
-        private readonly ShortUrlRepository _repository;
+        private readonly IRepository<ShortUrl> _repository;
 
-        public ShortUrlDataService(ShortUrlRepository repository) {
+        public ShortUrlDataService(IRepository<ShortUrl> repository) {
             _repository = repository;
         }
 
@@ -20,17 +20,17 @@ namespace Services.DataServices {
         }
 
         public async Task AddAsync(AddShortUrlViewModel model) {
+            var shortUrls = await GetAsync();
+            if (shortUrls.FirstOrDefault(e => e.Url == model.Url) != null) {
+                throw new SqlAlreadyFilledException("URL is already exist");
+            }
+
             var shortUrl = new ShortUrl() {
                 CreatingDate = DateTime.Now,
                 TransitionsCount = 0,
                 Url = model.Url,
                 Hash = HashGenerator.GenerateHash(model.Url)
             };
-
-            var shortUrls = await GetAsync();
-            if (shortUrls.FirstOrDefault(e => e.Url == model.Url) != null) {
-                throw new SqlAlreadyFilledException("URL is already exist");
-            }
 
             await _repository.AddAsync(shortUrl);
         }
@@ -59,10 +59,9 @@ namespace Services.DataServices {
             return shortUrl ?? throw new SqlNullValueException("The database does not contain this URL");
         }
 
-        public async Task<int> IncrementTransitionsCount(ShortUrl shortUrl) {
+        public async Task IncrementTransitionsCountAsync(ShortUrl shortUrl) {
             shortUrl.TransitionsCount++;
             await _repository.UpdateAsync(shortUrl);
-            return shortUrl.TransitionsCount;
         }
     }
 }

@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domains", "Domains\Domains.csproj", "{0A22F9DA-1CC4-43C6-BFD3-2CA4716C8F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{FFD957EA-DA9A-4279-91CA-C530B8BB5A96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{FFD957EA-DA9A-4279-91CA-C530B8BB5A96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{71BDD9C7-6CC3-48DC-B788-F7521593F7D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{71BDD9C7-6CC3-48DC-B788-F7521593F7D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{64007196-CB23-4756-9A2C-62AF24026894}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{71BDD9C7-6CC3-48DC-B788-F7521593F7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71BDD9C7-6CC3-48DC-B788-F7521593F7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71BDD9C7-6CC3-48DC-B788-F7521593F7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64007196-CB23-4756-9A2C-62AF24026894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64007196-CB23-4756-9A2C-62AF24026894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64007196-CB23-4756-9A2C-62AF24026894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64007196-CB23-4756-9A2C-62AF24026894}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
